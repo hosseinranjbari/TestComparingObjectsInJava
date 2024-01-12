@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Book {
+public class Book implements Comparable<Book>{
     String name;
     String ISBN;
 
@@ -20,5 +20,14 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(ISBN);
+    }
+
+    @Override
+    public int compareTo(Book otherBook) {
+        int compareNameInteger = this.name.compareToIgnoreCase(otherBook.name);
+        if (compareNameInteger == 0) {
+            return this.ISBN.compareTo(otherBook.ISBN);
+        }
+        return compareNameInteger;
     }
 }
